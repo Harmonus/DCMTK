@@ -1151,6 +1151,8 @@ int main(int argc, char *argv[])
     /* receive an association and acknowledge or reject it. If the association was */
     /* acknowledged, offer corresponding services and invoke one or more if required. */
     cond = acceptAssociation(net, asccfg);
+    // TBD: return after accepting the association
+    return 1;
 
     /* remove zombie child processes */
     cleanChildren(-1, OFFalse);
@@ -1653,6 +1655,8 @@ static OFCondition acceptAssociation(T_ASC_Network *net, DcmAssociationConfigura
   {
     OFLOG_INFO(storescpLogger, "Association Release");
     cond = ASC_acknowledgeRelease(assoc);
+    // TBD: return
+    return cond;
   }
   else if (cond == DUL_PEERABORTEDASSOCIATION)
   {
